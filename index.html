@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;padding: 0;box-sizing: border-box;
+        }
+        body{
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .main{
+            height: 18rem;
+            width: 40rem;
+            margin-top: 2rem;
+            margin-left: 2rem;
+        }
+        .quotes{
+            text-align: justify;
+            font-size: 2rem;
+            color: crimson;
+            font-weight: 600;
+        }
+        .auther{
+            margin: 2rem 2rem;
+            font-weight: 700;
+            /* padding-top: 2rem; */
+        }
+        .header{
+            color: royalblue;
+            margin: 2rem 2rem;
+        }
+        button{
+            margin-left: 2rem;
+            border: none;
+            height: 2rem;
+            padding: 0rem 1rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+        button:hover{
+            color: #fff;
+            background-color: crimson;
+            font-weight: 600;
+            transition: 300ms;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="header"><h1><u>Quotes   </u></h1></div>
+    <div class="main">
+        <span class="quotes"></span>
+        <span class="auther">-</span>
+    </div>
+    <button onclick="pre()">previous</button>
+    <button onclick="next()">Next</button>
+    <script>
+        var a=0;
+   function next(){
+    fetch("https://dummyjson.com/quotes")
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+             
+            console.log(data.quotes[a].quote);
+            document.querySelector(".quotes").innerHTML=data.quotes[a].quote+"<br>";
+            document.querySelector(".auther").innerHTML="-"+data.quotes[a].author+"<br>";
+
+
+            //    console.log(data.quotes[0]);
+        })
+        .catch(function(error){
+            console.log("Not Found");
+        })
+        a=a+1;
+   }
+   function pre(){
+    fetch("https://dummyjson.com/quotes")
+        .then(function(response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+             
+            console.log(data.quotes[a].quote);
+            document.querySelector(".quotes").innerHTML=data.quotes[a].quote+"<br>";
+            document.querySelector(".auther").innerHTML="-"+data.quotes[a].author+"<br>";
+
+
+            //    console.log(data.quotes[0]);
+        })
+        .catch(function(error){
+            console.log("Not Found");
+        })
+        a=a-1;
+   } 
+   
+    </script>
+</body>
+</html>
